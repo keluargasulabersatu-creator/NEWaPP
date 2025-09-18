@@ -11,7 +11,6 @@
       margin: 0;
       padding: 0;
     }
-
     header {
       background-color: #4CAF50;
       color: white;
@@ -19,14 +18,12 @@
       text-align: center;
       font-size: 24px;
     }
-
     nav {
       background-color: #2e8b57;
       display: flex;
       justify-content: space-around;
       padding: 10px 0;
     }
-
     nav button, .dropdown-btn {
       background: none;
       border: none;
@@ -35,17 +32,14 @@
       cursor: pointer;
       padding: 8px 16px;
     }
-
     nav button:hover, .dropdown-btn:hover {
       background-color: #3cb371;
       border-radius: 5px;
     }
-
     .dropdown {
       position: relative;
       display: inline-block;
     }
-
     .dropdown-content {
       display: none;
       position: absolute;
@@ -54,7 +48,6 @@
       box-shadow: 0px 8px 16px 0px rgba(0,0,0,0.2);
       z-index: 1;
     }
-
     .dropdown-content button {
       color: black;
       padding: 8px 12px;
@@ -62,37 +55,30 @@
       display: block;
       width: 100%;
     }
-
     .dropdown-content button:hover {
       background-color: #ddd;
     }
-
     main {
       padding: 20px;
     }
-
     .materi {
       display: none;
     }
-
     .materi.active {
       display: block;
     }
-
     .example {
       background-color: #e0ffff;
       padding: 15px;
       border-radius: 8px;
       margin: 10px 0;
     }
-
     .example button {
       margin-top: 10px;
       padding: 5px 10px;
       font-size: 14px;
       cursor: pointer;
     }
-
     footer {
       background-color: #4CAF50;
       color: white;
@@ -112,7 +98,6 @@
 
 <nav>
   <button onclick="showMenu('home')">Beranda</button>
-
   <div class="dropdown">
     <button class="dropdown-btn">Materi ▾</button>
     <div class="dropdown-content">
@@ -123,7 +108,6 @@
       <button onclick="showMateri('daily')">Daily Expressions</button>
     </div>
   </div>
-
   <button onclick="showMenu('latihan')">Latihan</button>
   <button onclick="showMenu('bantuan')">Bantuan</button>
   <button onclick="showMenu('tentang')">Tentang</button>
@@ -143,158 +127,9 @@
     <div class="example">
       <p><strong>Hi!</strong> (Hai!)</p>
       <button onclick="playAudio('audio_hi')">🔊 Dengarkan</button>
-      <audio id="audio_hi">
-        <source src="audio/hi.mp3" type="audio/mpeg">
-      </audio>
+      <audio id="audio_hi" src="https://www.oxfordlearnersdictionaries.com/media/english/us_pron/h/hi/hi_/hi__us_1.mp3"></audio>
     </div>
     <div class="example">
       <p><strong>Hello!</strong> (Halo!)</p>
       <button onclick="playAudio('audio_hello')">🔊 Dengarkan</button>
-      <audio id="audio_hello">
-        <source src="audio/hello.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-    <div class="example">
-      <p><strong>Good morning!</strong> (Selamat pagi!)</p>
-      <button onclick="playAudio('audio_morning')">🔊 Dengarkan</button>
-      <audio id="audio_morning">
-        <source src="audio/goodmorning.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-  </div>
-
-  <!-- Materi: Numbers -->
-  <div id="numbers" class="materi">
-    <h2>Materi: Numbers (Angka)</h2>
-    <div class="example">
-      <p><strong>One</strong> (Satu)</p>
-      <button onclick="playAudio('audio_one')">🔊 Dengarkan</button>
-      <audio id="audio_one">
-        <source src="audio/one.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-    <div class="example">
-      <p><strong>Two</strong> (Dua)</p>
-      <button onclick="playAudio('audio_two')">🔊 Dengarkan</button>
-      <audio id="audio_two">
-        <source src="audio/two.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-  </div>
-
-  <!-- Materi: Colors -->
-  <div id="colors" class="materi">
-    <h2>Materi: Colors (Warna)</h2>
-    <div class="example">
-      <p><strong>Red</strong> (Merah)</p>
-      <button onclick="playAudio('audio_red')">🔊 Dengarkan</button>
-      <audio id="audio_red">
-        <source src="audio/red.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-    <div class="example">
-      <p><strong>Blue</strong> (Biru)</p>
-      <button onclick="playAudio('audio_blue')">🔊 Dengarkan</button>
-      <audio id="audio_blue">
-        <source src="audio/blue.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-  </div>
-
-  <!-- Materi: Animals -->
-  <div id="animals" class="materi">
-    <h2>Materi: Animals (Hewan)</h2>
-    <div class="example">
-      <p><strong>Cat</strong> (Kucing)</p>
-      <button onclick="playAudio('audio_cat')">🔊 Dengarkan</button>
-      <audio id="audio_cat">
-        <source src="audio/cat.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-    <div class="example">
-      <p><strong>Dog</strong> (Anjing)</p>
-      <button onclick="playAudio('audio_dog')">🔊 Dengarkan</button>
-      <audio id="audio_dog">
-        <source src="audio/dog.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-  </div>
-
-  <!-- Materi: Daily Expressions -->
-  <div id="daily" class="materi">
-    <h2>Materi: Daily Expressions (Ekspresi Sehari-hari)</h2>
-    <div class="example">
-      <p><strong>How are you?</strong> (Apa kabar?)</p>
-      <button onclick="playAudio('audio_how')">🔊 Dengarkan</button>
-      <audio id="audio_how">
-        <source src="audio/howareyou.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-    <div class="example">
-      <p><strong>Thank you!</strong> (Terima kasih!)</p>
-      <button onclick="playAudio('audio_thank')">🔊 Dengarkan</button>
-      <audio id="audio_thank">
-        <source src="audio/thankyou.mp3" type="audio/mpeg">
-      </audio>
-    </div>
-  </div>
-
-  <!-- Latihan -->
-  <div id="latihan" class="materi">
-    <h2>Latihan</h2>
-    <p>Pilih salam yang benar untuk "Selamat pagi":</p>
-    <button onclick="alert('Benar!')">Good morning!</button>
-    <button onclick="alert('Coba lagi!')">Hello!</button>
-    <button onclick="alert('Coba lagi!')">Hi!</button>
-  </div>
-
-  <!-- Bantuan -->
-  <div id="bantuan" class="materi">
-    <h2>Bantuan</h2>
-    <p>Gunakan menu Materi untuk belajar. Dengarkan audio, ulangi pengucapan, dan lakukan latihan untuk menguji kemampuanmu.</p>
-  </div>
-
-  <!-- Tentang -->
-  <div id="tentang" class="materi">
-    <h2>Tentang KeySmart</h2>
-    <p>KeySmart adalah aplikasi belajar bahasa Inggris interaktif untuk anak-anak. Materi dibuat sederhana, menarik, dan menyenangkan.</p>
-  </div>
-</main>
-
-<footer>
-  &copy; 2025 KeySmart. Semua hak dilindungi.
-</footer>
-
-<script>
-  function showMenu(menu) {
-    const menus = document.querySelectorAll('.materi');
-    menus.forEach(m => m.classList.remove('active'));
-    document.getElementById(menu).classList.add('active');
-  }
-
-  function showMateri(materiId) {
-    showMenu(materiId);
-    // otomatis mainkan audio pertama jika ada
-    const firstAudio = document.querySelector('#' + materiId + ' audio');
-    if(firstAudio) firstAudio.play();
-  }
-
-  function playAudio(id) {
-    const audio = document.getElementById(id);
-    audio.play();
-  }
-
-  // Dropdown hover
-  const dropdowns = document.querySelectorAll('.dropdown');
-  dropdowns.forEach(dd => {
-    dd.addEventListener('mouseenter', () => {
-      dd.querySelector('.dropdown-content').style.display = 'block';
-    });
-    dd.addEventListener('mouseleave', () => {
-      dd.querySelector('.dropdown-content').style.display = 'none';
-    });
-  });
-</script>
-
-</body>
-</html>
+      <audio id="audio_he_
