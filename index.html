@@ -1,0 +1,153 @@
+﻿<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>KeySmart - Aplikasi Belajar Bahasa Inggris</title>
+  <style>
+    body { font-family: Arial, sans-serif; margin:0; padding:0; background:#f0f8ff; }
+    header { background:#4CAF50; color:white; text-align:center; padding:20px; font-size:24px; }
+    nav { background:#2e8b57; display:flex; justify-content:space-around; padding:10px 0; }
+    nav button { background:none; border:none; color:white; font-size:16px; cursor:pointer; padding:8px 16px; }
+    nav button:hover { background:#3cb371; border-radius:5px; }
+    main { padding:20px; }
+    .materi { display:none; }
+    .materi.active { display:block; }
+    .topic-button { margin:5px; padding:5px 10px; cursor:pointer; background:#87cefa; border:none; border-radius:5px; }
+    .example { background:#e0ffff; padding:15px; border-radius:8px; margin:10px 0; }
+    .example button { margin-top:10px; padding:5px 10px; font-size:14px; cursor:pointer; }
+    footer { background:#4CAF50; color:white; text-align:center; padding:15px; position:fixed; width:100%; bottom:0; }
+  </style>
+</head>
+<body>
+
+<header>KeySmart - Belajar Bahasa Inggris Interaktif</header>
+
+<nav>
+  <button onclick="showMenu('home')">Beranda</button>
+  <button onclick="showMenu('materi')">Materi</button>
+  <button onclick="showMenu('latihan')">Latihan</button>
+  <button onclick="showMenu('bantuan')">Bantuan</button>
+  <button onclick="showMenu('tentang')">Tentang</button>
+</nav>
+
+<main>
+  <!-- Beranda -->
+  <div id="home" class="materi active">
+    <h2>Selamat Datang di KeySmart!</h2>
+    <p>Ini adalah aplikasi belajar bahasa Inggris mandiri. Gunakan menu di atas untuk mulai belajar.</p>
+  </div>
+
+  <!-- Materi -->
+  <div id="materi" class="materi">
+    <h2>Materi</h2>
+    <p>Pilih topik materi:</p>
+    <div>
+      <button class="topic-button" onclick="loadTopic('greetings')">Greetings</button>
+      <button class="topic-button" onclick="loadTopic('numbers')">Numbers</button>
+      <button class="topic-button" onclick="loadTopic('colors')">Colors</button>
+      <button class="topic-button" onclick="loadTopic('animals')">Animals</button>
+      <button class="topic-button" onclick="loadTopic('daily')">Daily Expressions</button>
+    </div>
+
+    <div id="topic-content" style="margin-top:20px;"></div>
+  </div>
+
+  <!-- Latihan -->
+  <div id="latihan" class="materi">
+    <h2>Latihan</h2>
+    <p>Pilih jawaban yang benar:</p>
+    <div id="exercise-content"></div>
+  </div>
+
+  <!-- Bantuan -->
+  <div id="bantuan" class="materi">
+    <h2>Bantuan</h2>
+    <p>Gunakan menu di atas untuk memilih materi. Dengarkan audio, ulangi pengucapan, dan kerjakan latihan untuk menguji kemampuanmu.</p>
+  </div>
+
+  <!-- Tentang -->
+  <div id="tentang" class="materi">
+    <h2>Tentang KeySmart</h2>
+    <p>KeySmart adalah aplikasi belajar bahasa Inggris interaktif untuk anak-anak. Materi dibuat sederhana, menarik, dan menyenangkan.</p>
+  </div>
+</main>
+
+<footer>&copy; 2025 KeySmart. Semua hak dilindungi.</footer>
+
+<script>
+const materiData = {
+  greetings: [
+    {text: "Hi!", audio:"audio/hi.mp3"},
+    {text: "Hello!", audio:"audio/hello.mp3"},
+    {text: "Good morning!", audio:"audio/goodmorning.mp3"}
+  ],
+  numbers: [
+    {text: "One", audio:"audio/one.mp3"},
+    {text: "Two", audio:"audio/two.mp3"},
+    {text: "Three", audio:"audio/three.mp3"}
+  ],
+  colors: [
+    {text: "Red", audio:"audio/red.mp3"},
+    {text: "Blue", audio:"audio/blue.mp3"},
+    {text: "Green", audio:"audio/green.mp3"}
+  ],
+  animals: [
+    {text: "Cat", audio:"audio/cat.mp3"},
+    {text: "Dog", audio:"audio/dog.mp3"},
+    {text: "Bird", audio:"audio/bird.mp3"}
+  ],
+  daily: [
+    {text: "How are you?", audio:"audio/howareyou.mp3"},
+    {text: "Thank you!", audio:"audio/thankyou.mp3"},
+    {text: "See you!", audio:"audio/seeyou.mp3"}
+  ]
+};
+
+const latihanData = {
+  greetings: {question:"Apa arti 'Good morning'?", options:["Selamat pagi","Halo","Selamat malam"], answer:0},
+  numbers: {question:"Berapa angka 'Two'?", options:["1","2","3"], answer:1}
+};
+
+function showMenu(menu){
+  const menus = document.querySelectorAll('.materi');
+  menus.forEach(m=>m.classList.remove('active'));
+  document.getElementById(menu).classList.add('active');
+  if(menu==='latihan') loadExercise('greetings'); // default latihan greetings
+}
+
+function loadTopic(topic){
+  const container = document.getElementById('topic-content');
+  container.innerHTML = `<h3>${topic.charAt(0).toUpperCase()+topic.slice(1)}</h3>`;
+  materiData[topic].forEach((item,index)=>{
+    container.innerHTML += `
+      <div class="example">
+        <p>${item.text}</p>
+        <button onclick="playAudio('${topic}-${index}')">🔊 Dengarkan</button>
+        <audio id="${topic}-${index}"><source src="${item.audio}" type="audio/mpeg"></audio>
+      </div>
+    `;
+  });
+}
+
+function loadExercise(topic){
+  const container = document.getElementById('exercise-content');
+  const exercise = latihanData[topic];
+  container.innerHTML = `<p>${exercise.question}</p>`;
+  exercise.options.forEach((opt,i)=>{
+    container.innerHTML += `<button onclick="checkAnswer(${i},${exercise.answer})">${opt}</button> `;
+  });
+}
+
+function checkAnswer(selected, answer){
+  if(selected===answer) alert("Benar! 🎉");
+  else alert("Coba lagi! ❌");
+}
+
+function playAudio(id){
+  document.getElementById(id).play();
+}
+</script>
+
+</body>
+</html>
